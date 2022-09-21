@@ -1,0 +1,26 @@
+.container {
+    max-width: 100% !important;
+    background-color: hsl(185, 41%, 84%);
+    height: 120vh;
+    margin: 0 !important;
+    padding: 4.7rem 6rem !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.title {
+    font-family: 'Space Mono', monospace;
+    font-weight: 500;
+    font-size: 29px;
+    text-transform: uppercase;
+    letter-spacing: 9px;
+    margin: -4rem 0 -1rem 0;
+}
+.row {
+    border-radius: 12px;
+    width: 100% !important;
+    max-width: 80% !important;
+    height: 500px;
+    background-color: hsl(189, 41%, 97%);
+}
