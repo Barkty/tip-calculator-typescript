@@ -31,3 +31,48 @@
     background-color: hsl(183, 100%, 15%);
     border-radius: 10px;
 }
+.form_group {
+    width: 100%;
+    height: 70px;
+}
+.form_wrap {
+    padding-top: 1rem;
+}
+.form-label {
+    text-align: left;
+    font-family: 'Space Mono', monospace;
+    font-size: 24px;
+    margin-left: -26rem;
+    font-weight: 500;
+}
+.form-label.customer {
+    margin-left: -15rem;
+}
+.form-label.tip {
+    margin-left: -19rem;
+}
+.input-group {
+    height: 50px;
+}
+.input-group, .form-control, .input-group-text {
+    background-color: hsl(185, 41%, 90%) !important;
+    border: none !important;
+    border-radius: 5px;
+}
+.input-group>.form-control {
+    direction: rtl;
+    font-family: 'Space Mono', monospace;
+    font-size: 24px;
+    font-weight: 700;
+}
+.input-group>.form-control::placeholder {
+    font-family: 'Space Mono', monospace;
+    font-size: 20px;
+}
+.input-group>.form-control:focus {
+    border: none;
+}
+.form_contain {
+    width: 100%;
+    height: auto;
+}
