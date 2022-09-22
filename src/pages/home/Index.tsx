@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Col, Container, Form, InputGroup, Row } from 'react-bootstrap'
 import { BsCurrencyDollar } from 'react-icons/bs'
+import { FaUserAlt } from 'react-icons/fa'
 import * as Yup from 'yup';
 import { useFormik, FormikProps } from 'formik';
 import './Index.css'
@@ -77,7 +78,7 @@ const Index = () => {
                   <Form.Label htmlFor='customer' className='customer'>Number of People</Form.Label>
                   <InputGroup className="mb-3">
                     <InputGroup.Text id="customer">
-                      <BsCurrencyDollar fontSize={24} fontFamily='Space Mono, monospace'/>
+                      <FaUserAlt fontSize={24} fontFamily='Space Mono, monospace'/>
                     </InputGroup.Text>
                     <Form.Control
                       placeholder='5'
