@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Col, Container, Form, InputGroup, Row } from 'react-bootstrap'
+import { Button, Col, Container, Form, InputGroup, Row } from 'react-bootstrap'
 import { BsCurrencyDollar } from 'react-icons/bs'
 import { FaUserAlt } from 'react-icons/fa'
 import * as Yup from 'yup';
@@ -53,7 +53,7 @@ const Index = () => {
                   <Form.Label htmlFor='bill'>Bill</Form.Label>
                   <InputGroup className="mb-3">
                     <InputGroup.Text id="currency">
-                      <BsCurrencyDollar fontSize={24} fontFamily='Space Mono, monospace'/>
+                      <BsCurrencyDollar fontSize={24} fontFamily='Space Mono, monospace' color='hsl(184, 14%, 56%)'/>
                     </InputGroup.Text>
                     <NumericFormat
                       displayType='input'
@@ -72,13 +72,19 @@ const Index = () => {
                 </div>
                 <div className='form_contain'>
                   <Form.Label htmlFor='customer' className='tip'>Select Tip %</Form.Label>
-                    
+                  <div className='d-flex w-100 justify-content-between btn_con'>
+                    <Button className='button_color'>5%</Button>
+                    <Button className='button_color'>10%</Button>
+                    <Button className='button_color'>15%</Button>
+                    <Button className='button_color'>25%</Button>
+                    <Button className='button_color'>50%</Button>
+                  </div>  
                 </div>
                 <div className='form_contain'>
                   <Form.Label htmlFor='customer' className='customer'>Number of People</Form.Label>
                   <InputGroup className="mb-3">
                     <InputGroup.Text id="customer">
-                      <FaUserAlt fontSize={24} fontFamily='Space Mono, monospace'/>
+                      <FaUserAlt fontSize={24} fontFamily='Space Mono, monospace' color='hsl(184, 14%, 56%)'/>
                     </InputGroup.Text>
                     <Form.Control
                       placeholder='5'
