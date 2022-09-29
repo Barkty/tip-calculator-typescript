@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, Col, Container, Form, InputGroup, Row } from 'react-bootstrap'
 import { BsCurrencyDollar } from 'react-icons/bs'
 import { FaUserAlt } from 'react-icons/fa'
@@ -12,11 +12,22 @@ interface formValues {
   customer: string
   tip: string
 }
+type Bill = {
+  bills: string
+}
+type Customer = {
+  customer: string
+}
+type Tip = {
+  tip: number
+}
 
 const Index = () => {
-    const [bills, setBill] = useState(0);
-    const [customers, setCustomer] = useState(0);
+    const [bills, setBill] = useState<Bill | ''>('');
+    const [customers, setCustomer] = useState<Customer | ''>('');
     const [tips, setTip] = useState(0);
+    const [totalBills, setTotalBill] = useState<Bill | ''>('');
+    const [personTip, setpersonTip] = useState<Tip | ''>('');
 
     const validate = Yup.object().shape({
     bill: Yup.string()
@@ -42,6 +53,19 @@ const Index = () => {
     validationSchema: validate
   })
 
+  useEffect(()=>{
+    let bill = Number(bills)
+    let customer = Number(customers)
+
+    console.log(tips, bills, customers)
+    const tipAmmount = tips / 100 * bill;
+    console.log('Amount: ', tipAmmount)
+    const tipPerPerson = tipAmmount / customer
+    console.log('Person tip: ', tipPerPerson)
+    setpersonTip({tip: tipPerPerson})
+    console.log(personTip)
+
+  }, [tips, bills, customers])
   return (
     <Container>
         <h2 className='title'>spli<br/>tter</h2>
@@ -64,6 +88,7 @@ const Index = () => {
                       name="bill"
                       value={formik.values.bill}
                       onValueChange={(values, sourceInfo) => {
+                        setBill({bills: values.value})
                         formik.values.bill = values.value
                       }}
                       onBlur={formik.handleBlur}
@@ -72,12 +97,13 @@ const Index = () => {
                 </div>
                 <div className='form_contain'>
                   <Form.Label htmlFor='customer' className='tip'>Select Tip %</Form.Label>
-                  <div className='d-flex w-100 justify-content-between btn_con'>
-                    <Button className='button_color'>5%</Button>
-                    <Button className='button_color'>10%</Button>
-                    <Button className='button_color'>15%</Button>
-                    <Button className='button_color'>25%</Button>
-                    <Button className='button_color'>50%</Button>
+                  <div className='d-flex w-100 flex-wrap justify-content-between btn_con'>
+                    <Button className='button_color' onClick={()=>{setTip(5)}}>5%</Button>
+                    <Button className='button_color' onClick={()=>{setTip(10)}}>10%</Button>
+                    <Button className='button_color button_cyan' onClick={()=>{setTip(15)}}>15%</Button>
+                    <Button className='button_color' onClick={()=>{setTip(25)}}>25%</Button>
+                    <Button className='button_color' onClick={()=>{setTip(50)}}>50%</Button>
+                    <Button className='button_color button_light'>Custom</Button>
                   </div>  
                 </div>
                 <div className='form_contain'>
@@ -91,6 +117,7 @@ const Index = () => {
                       aria-label="Number of People"
                       aria-describedby="customer"
                       name='customer'
+                      onChange={(e)=>{setCustomer({customer: e.target.value})}}
                     />
                   </InputGroup> 
                 </div>
@@ -98,7 +125,29 @@ const Index = () => {
             </Col>
             <Col md={6}>
               <div className='calc_dark'>
-
+                  <form className='w-100 d-flex justify-content-between form_'>
+                    <div className='w-100'>
+                      <div className='d-flex w-100 justify-content-between mb-5 calc_height'>
+                        <div className='calc_label'>
+                          <label>Tip Amount</label>
+                          <span>/ person</span>
+                        </div>
+                        <div className='calc_input'>
+                          <input type="text" placeholder='$0.0' value={personTip.toString()} readOnly/>
+                        </div>
+                      </div>
+                      <div className='d-flex w-100 justify-content-between calc_height'>
+                        <div className='calc_label'>
+                          <label>Total</label>
+                          <span>/ person</span>
+                        </div>
+                        <div className='calc_input'>
+                          <input type="text" placeholder='$0.0' value={totalBills.toString()} readOnly/>
+                        </div>
+                      </div>
+                    </div>
+                    <button type='reset' className='btn btn-lg w-100 reset_btn'>RESET</button>
+                  </form>
               </div>
             </Col>
         </Row>
